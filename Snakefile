@@ -1,5 +1,8 @@
 import snakemake
+import os
 
+if not os.path.exists("output"):
+    os.mkdir("output")
 
 
 rule all:
