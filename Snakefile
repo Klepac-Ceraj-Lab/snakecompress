@@ -12,15 +12,20 @@ rule all:
 
 rule create:
     input: "hello{i}.txt"
-    output: "output/out{i}.txt"
+    output: temp("output/out{i}.txt")
     shell: "cat {input} > {output}"    
+
 
 rule combine:
     input: expand("output/out{i}.txt", i=range(3))
     output: "output/combined.txt"
-    shell: "sleep 3; cat {input} > {output}"
+    shell: "sleep 3; cat {input} > {output}" 
 
 rule compress:
     input: "output/out{i}.txt"
     output: "output/out{i}.txt.gz"
-    shell: "gzip {input}"
+    shell: "gzip -c {input} > {output}"
+
+
+
+
