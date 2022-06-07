@@ -24,7 +24,7 @@ rule combine:
 rule compress:
     input: "output/out{i}.txt"
     output: "output/out{i}.txt.gz"
-    shell: "gzip {input}"
+    shell: "gzip -c {input} > {output}"
 
 
 
